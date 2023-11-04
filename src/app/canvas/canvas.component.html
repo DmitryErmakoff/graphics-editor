@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button (click)="setModeCreate()" mat-raised-button>Линия</button>
+    <button (click)="setModeFigure()" class="button-figure" mat-raised-button>
+      Фигура
+    </button>
+    <button (click)="setModeDelete()" mat-raised-button color="warn">
+      Удаление
+    </button>
+    <button (click)="setModeEditMore()" mat-raised-button>
+      Ред нескольких
+    </button>
+    <button
+      (click)="setModeEdit()"
+      class="button-figure"
+      color="accent"
+      mat-raised-button
+    >
+      Редактирование
+    </button>
+    <p class="label-style">Выбран режим: {{ this.canvasMode }}</p>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row *ngIf="this.canvasMode == 'create'">
+    <mat-slider min="1" max="20" color="warn">
+      <input matSliderThumb [(ngModel)]="thickness" />
+    </mat-slider>
+    <p>Размер: {{ thickness }}</p>
+    <p class="button-color">Выберите цвет</p>
+    <input type="color" [(ngModel)]="color" />
+  </mat-toolbar-row>
+
+  <!-- <mat-toolbar-row *ngIf="this.canvasMode == 'edit'">
+    <button mat-raised-button>Изм цвет</button>
+    <p class="button-color">Выберите цвет</p>
+    <input type="color" [(ngModel)]="color" />
+  </mat-toolbar-row> -->
+
+  <mat-toolbar-row *ngIf="this.canvasMode == 'figure'">
+    <button (click)="startFigure()" mat-raised-button>Начать</button>
+    <mat-slider min="1" max="20" color="warn">
+      <input matSliderThumb [(ngModel)]="thickness" />
+    </mat-slider>
+    <p>Размер: {{ thickness }}</p>
+    <p class="button-color">Выберите цвет</p>
+    <input type="color" [(ngModel)]="color" />
+  </mat-toolbar-row>
+</mat-toolbar>
+<div #stageContainer></div>
